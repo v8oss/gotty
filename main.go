@@ -22,6 +22,7 @@ func main() {
 		flag{"address", "a", "IP address to listen"},
 		flag{"port", "p", "Port number to listen"},
 		flag{"permit-write", "w", "Permit clients to write to the TTY (BE CAREFUL)"},
+		flag{"prefix", "", "URL prefix gotty is accessible at"},
 		flag{"credential", "c", "Credential for Basic Authentication (ex: user:pass, default disabled)"},
 		flag{"random-url", "r", "Add a random string to the URL"},
 		flag{"random-url-length", "", "Random URL length"},
