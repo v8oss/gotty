@@ -56,6 +56,7 @@ type Options struct {
 	Address             string                 `hcl:"address"`
 	Port                string                 `hcl:"port"`
 	PermitWrite         bool                   `hcl:"permit_write"`
+	Prefix              string                 `hcl:"prefix"`
 	EnableBasicAuth     bool                   `hcl:"enable_basic_auth"`
 	Credential          string                 `hcl:"credential"`
 	EnableRandomUrl     bool                   `hcl:"enable_random_url"`
@@ -86,6 +87,7 @@ var DefaultOptions = Options{
 	Address:             "",
 	Port:                "8080",
 	PermitWrite:         false,
+	Prefix:              "",
 	EnableBasicAuth:     false,
 	Credential:          "",
 	EnableRandomUrl:     false,
@@ -168,7 +170,8 @@ func (app *App) Run() error {
 		log.Printf("Once option is provided, accepting only one client")
 	}
 
-	path := ""
+	path := strings.TrimSuffix(app.options.Prefix, "/")
+	
 	if app.options.EnableRandomUrl {
 		path += "/" + generateRandomString(app.options.RandomUrlLength)
 	}
